@@ -6,9 +6,12 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const errorMiddleware = require("./middlewares/error");
 const path = require("path")
+const helmet = require("helmet");
 
 const app = express();
 const http = require("http").Server(app);
+
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
