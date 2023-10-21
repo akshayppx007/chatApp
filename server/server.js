@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const errorMiddleware = require("./middlewares/error");
+const path = require("path")
 
 const app = express();
 const http = require("http").Server(app);
@@ -13,6 +14,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// serve static files
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
 // socket io
 const socketIO = require("socket.io")(http, {
@@ -39,13 +42,17 @@ const user = require("./routes/userRoute");
 
 app.use("/api/v1", user);
 
+// Catch-all route to serve the React app
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+});
 
 // error middleware
 app.use(errorMiddleware);
 
 
 // config.env file
-dotenv.config();
+// dotenv.config();
 
 // Connect to database
 connectDatabase();
