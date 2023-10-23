@@ -6,7 +6,8 @@ import Login from "./components/pages/user/login";
 import socketIO from "socket.io-client";
 import { useEffect } from "react";
 import ProtectedRoutes from "./utils/protectedRoutes";
-const socket = socketIO.connect("http://localhost:9000");
+// const socket = socketIO.connect("http://localhost:9000");
+const socket = socketIO.connect("https://chatapp-ddfp.onrender.com");
 
 function App() {
   return (
