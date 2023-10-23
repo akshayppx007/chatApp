@@ -26,12 +26,21 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// // socket io
+// const socketIO = require("socket.io")(http, {
+//     cors: {
+//         origin: "http://localhost:5173",
+//     },
+// });
+
+
 // socket io
 const socketIO = require("socket.io")(http, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: "https://chatapp-ddfp.onrender.com",
     },
 });
+
 
 socketIO.on("connection", (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`);
