@@ -12,6 +12,15 @@ const app = express();
 const http = require("http").Server(app);
 
 app.use(helmet());
+// Set up helmet with CSP policy
+app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        connectSrc: ["'self'", "http://localhost:9000"],
+      },
+    })
+  );
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
