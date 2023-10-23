@@ -17,9 +17,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// serve static files
-app.use(express.static(path.join(__dirname, "../client/dist")));
-
 // socket io
 const socketIO = require("socket.io")(http, {
     cors: {
@@ -38,6 +35,11 @@ socketIO.on("connection", (socket) => {
         console.log("🔥: A user disconnected");
     });
 });
+
+
+// serve static files
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
 
 
 // import all routes
