@@ -17,7 +17,7 @@ app.use(
     helmet.contentSecurityPolicy({
       directives: {
         defaultSrc: ["'self'"],
-        connectSrc: ["'self'", "http://localhost:9000"],
+        connectSrc: ["'self'", "http://localhost:9000", "https://chatapp-ddfp.onrender.com"],
       },
     })
   );
